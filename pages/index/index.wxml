@@ -1,0 +1,18 @@
+<view class='contentWarp'>
+        <!-- *************操作区域*************  -->
+        <block wx:for="{{itemList}}" wx:key="{{item.id}}">
+            <!-- 圆心坐标 <text style='position:absolute;top:{{item.y}}px;left:{{item.x}}px;width:2px;height:2px;background-color:yellow;z-index:500'></text> -->
+            <view class='touchWrap' style='transform: scale({{item.scale}});top:{{item.top}}px;left:{{item.left}}px; '>
+                <view class='imgWrap {{item.active? "touchActive":""}}' style="transform: rotate({{item.angle}}deg); border: {{item.active?4*item.oScale:0}}rpx #fff dashed;">
+                    <image src='{{item.image}}' data-id='{{item.id}}' style='width:{{item.width}}px;height:{{item.height}}px;' bindtouchstart='WraptouchStart'  bindtouchmove='WraptouchMove'></image>
+                    <image class='x' src='../../images/x.png' style='transform: scale({{item.oScale}});transform-origin:center;' data-id='{{item.id}}' bindtap='deleteItem'></image>
+                    <image class='o' src='../../images/o.png' style='transform: scale({{item.oScale}});transform-origin:center;' data-id='{{item.id}}' bindtouchstart='oTouchStart' bindtouchmove='oTouchMove' ></image>
+                </view>
+            </view>
+        </block>
+        <!-- **************操作区域************  -->
+
+
+        <button bindtap='addzs'>添加</button>
+        <button bindtap='bs'>保存</button>
+</view>
